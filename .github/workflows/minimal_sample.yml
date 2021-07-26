@@ -42,3 +42,17 @@ jobs:
           echo test, and deploy your project.
           make --help
           make --version
+
+  test-unit:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+     -  name: Execute unit tests
+        run: echo Running unit tests 
+
+  test-integration:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+     -  name: Execute integration tests
+        run: echo Running integration tests
