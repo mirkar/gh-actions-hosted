@@ -55,6 +55,9 @@ jobs:
           minor_pattern: "(MINOR)"
           # A string to determine the format of the version output
           format: "${major}.${minor}.${patch}-prerelease${increment}"
+          # Optional path to check for changes. If any changes are detected in the path the
+          # 'changed' output will true. Enter multiple paths separated by spaces.
+          #change_path: "src/my-service"
           # Named version, will be used as suffix for name version tag
           namespace: project-b
           # Indicate whether short tags like 'v1' should be supported. If false only full
@@ -63,7 +66,14 @@ jobs:
           # If this is set to true, *every* commit will be treated as a new version.
           bump_each_commit: false
       - name: Semver
-        run: echo ${{steps.version.outputs.version}}
+        # https://github.com/marketplace/actions/git-semantic-version
+        run: |
+          echo ${{steps.version.outputs.version}}
+          echo ${{steps.version.outputs.version_tag}}
+          echo ${{steps.version.outputs.major}}
+          echo ${{steps.version.outputs.minor}}
+          echo ${{steps.version.outputs.patch}}
+          echo ${{steps.version.outputs.increment}}
          
 
   test-unit:
