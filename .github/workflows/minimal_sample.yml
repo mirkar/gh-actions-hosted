@@ -63,7 +63,7 @@ jobs:
           # If this is set to true, *every* commit will be treated as a new version.
           bump_each_commit: false
       - name: Semver
-        run: echo ${{steps.version.outputs}}
+        run: echo ${{steps.version.outputs.version}}
          
 
   test-unit:
